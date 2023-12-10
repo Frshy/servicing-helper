@@ -1,2 +1,3 @@
-# servicing-helper
-A task given to me by Kamil from likescoding (company's head)
+# Servicing Helper
+
+## A task given to me by Kamil from Likescoding (company's head)
