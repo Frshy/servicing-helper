@@ -2,6 +2,29 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthResponse {
+  access_token: String!
+}
+
+type UserResponse {
+  id: ID!
+  username: String!
+  admin: Boolean!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   witajSwiecie: String!
+  getMe: UserResponse!
+}
+
+type Mutation {
+  signUp(username: String!, password: String!): AuthResponse!
+  signIn(username: String!, password: String!): AuthResponse!
 }
