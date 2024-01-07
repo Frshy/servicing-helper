@@ -17,6 +17,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             where: { id },
         })
 
+        if (!user) {
+            return false
+        }
+
         delete user.passwordHash
 
         return user

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver } from '@nestjs/apollo';
 import { AuthResolver } from './auth/auth.resolver';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
@@ -16,8 +16,11 @@ import { JwtGuard } from './auth/guard/jwt.guard';
   imports: [
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloFederationDriver,
+      autoSchemaFile: {
+        path: join(process.cwd(), 'src/schema.gql'),
+        federation: 2
+      },
       playground: true,
       context: ({ req }) => ({ req }),
     }),

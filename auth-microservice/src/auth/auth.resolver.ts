@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver, ResolveReference } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { AuthResponse } from './response/auth.response';
 import { User } from '@prisma/client';
@@ -7,7 +7,7 @@ import { UseGuards } from '@nestjs/common';
 import { JwtGuard } from './guard/jwt.guard';
 import { GetUser } from './decorator/get-user.decorator';
 
-@Resolver()
+@Resolver((of) => UserResponse)
 export class AuthResolver {
     constructor(private readonly authService: AuthService) { }
 
@@ -38,5 +38,10 @@ export class AuthResolver {
         @GetUser() user: User
     ): Promise<UserResponse> {
         return user
+    }
+
+    @ResolveReference()
+    resolveReference(reference: { __typename: string; id: number }): UserResponse {
+        return new UserResponse();
     }
 }
