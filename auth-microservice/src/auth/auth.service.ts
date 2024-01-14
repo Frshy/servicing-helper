@@ -1,7 +1,8 @@
-import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt'
+import { AuthInput } from './dto/auth.input';
 
 @Injectable()
 export class AuthService {
@@ -10,10 +11,10 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-    async signIn(username: string, password: string) {
+    async signIn(input: AuthInput) {
         const user = await this.prisma.user.findUnique({
             where: {
-                username
+                username: input.username
             }
         })
 
@@ -21,7 +22,7 @@ export class AuthService {
             throw new ForbiddenException('User with this username does not exists!')
         }
 
-        const passwordsMatch = await bcrypt.compare(password, user.passwordHash)
+        const passwordsMatch = await bcrypt.compare(input.password, user.passwordHash)
 
         if (!passwordsMatch) {
             throw new ForbiddenException(
@@ -36,10 +37,10 @@ export class AuthService {
         }
     }
 
-    async signUp(username: string, password: string) {
+    async signUp(input: AuthInput) {
         const usernameTaken = await this.prisma.user.count({
             where: {
-                username
+                username: input.username
             }
         })
 
@@ -48,11 +49,11 @@ export class AuthService {
         }
 
         const salt = await bcrypt.genSalt();
-        const passwordHash = bcrypt.hashSync(password, salt);
+        const passwordHash = bcrypt.hashSync(input.password, salt);
 
         const user = await this.prisma.user.create({
             data: {
-                username,
+                username: input.username,
                 passwordHash
             }
         });
@@ -63,5 +64,4 @@ export class AuthService {
             access_token: this.jwtService.sign(payload)
         }
     }
-
 }

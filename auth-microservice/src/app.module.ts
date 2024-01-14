@@ -11,6 +11,9 @@ import { PrismaService } from './prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './auth/strategy/jwt.strategy';
 import { JwtGuard } from './auth/guard/jwt.guard';
+import { UserService } from './user/user.service';
+import { UserResolver } from './user/user.resolver';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -25,8 +28,9 @@ import { JwtGuard } from './auth/guard/jwt.guard';
       context: ({ req }) => ({ req }),
     }),
     AuthModule,
-    JwtModule
+    JwtModule,
+    UserModule
   ],
-  providers: [AppService, AuthResolver, AuthService, JwtStrategy, JwtGuard],
+  providers: [AppService, AuthResolver, AuthService, JwtStrategy, JwtGuard, UserService, UserResolver],
 })
 export class AppModule { }

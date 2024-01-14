@@ -2,7 +2,7 @@ import { Field, InputType } from "@nestjs/graphql";
 
 @InputType()
 export class AuthInput {
-    //todo: validation decorators
+    //(maybe) todo: validation decorators
     @Field(of => String)
     username: string;
 
