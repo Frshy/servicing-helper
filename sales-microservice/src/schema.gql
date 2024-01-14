@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SaleModel {
+  id: Int!
+  service: String!
+  price: Float!
+  orderedBy: Int!
+  user: UserModel!
+  editedAt: DateTime!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type UserModel {
+  id: ID!
+  sales: [SaleModel!]!
+}
+
+type Query {
+  findOneSale(id: Float!): SaleModel!
+}
+
+type Mutation {
+  createSale(input: CreateSaleInput!): SaleModel!
+  deleteSale(id: Float!): SaleModel!
+  patchSale(input: PatchSaleInput!): SaleModel!
+}
+
+input CreateSaleInput {
+  service: String!
+  price: Float!
+  orderedBy: Int!
+}
+
+input PatchSaleInput {
+  id: Int!
+  service: String
+  price: Float
+  orderedBy: Int
+}
