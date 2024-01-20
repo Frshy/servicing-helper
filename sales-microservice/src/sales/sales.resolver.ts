@@ -4,6 +4,9 @@ import { SaleModel } from './model/sale.model';
 import { CreateSaleInput } from './dto/create-sale.input';
 import { SalesService } from './sales.service';
 import { PatchSaleInput } from './dto/patch-sale.input';
+import { GetUser } from './decorator/get-user.decorator';
+import { AdminGuard } from './guard/admin.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver((of) => SaleModel)
 export class SalesResolver {
@@ -11,11 +14,7 @@ export class SalesResolver {
         private readonly salesService: SalesService
     ) { }
 
-
-    /*
-    !!! TODO: ADMIN GUARD (user object is sent in the header) !!!
-    */
-
+    @UseGuards(AdminGuard)
     @Mutation(() => SaleModel)
     async createSale(
         @Args('input') input: CreateSaleInput,
@@ -23,6 +22,7 @@ export class SalesResolver {
         return this.salesService.create(input);
     }
 
+    @UseGuards(AdminGuard)
     @Query(() => SaleModel)
     async findOneSale(
         @Args('id') id: number
@@ -30,6 +30,7 @@ export class SalesResolver {
         return this.salesService.findOne(id);
     }
 
+    @UseGuards(AdminGuard)
     @Mutation(() => SaleModel)
     async deleteSale(
         @Args('id') id: number,
@@ -37,6 +38,7 @@ export class SalesResolver {
         return this.salesService.delete(id);
     }
 
+    @UseGuards(AdminGuard)
     @Mutation(() => SaleModel)
     async patchSale(
         @Args('input') input: PatchSaleInput
