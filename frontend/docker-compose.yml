@@ -1,0 +1,12 @@
+version: "3"
+services:
+  frontend:
+    container_name: frontend-container
+    build:
+      dockerfile: Dockerfile
+      target: 'dev'
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
