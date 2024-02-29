@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mailer-microservice:
+    container_name: mailer-microservice-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: 'prod'
+    ports:
+      - "3004:3004"
+    env_file:
+      - .env.production
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    container_name: mysql-container-mailer
+    image: mysql:latest
+    ports:
+      - "3309:3306"
+    env_file:
+      - .env.production
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+
+  redis:
+    container_name: redis-container-mailer
+    image: 'redis:latest'
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]

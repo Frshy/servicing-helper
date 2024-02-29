@@ -1,0 +1,13 @@
+version: '3'
+services:
+  cdn-server:
+    container_name: cdn-server-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+    volumes:
+      - ".:/usr/src/app"
+    env_file:
+      - .env

@@ -9,6 +9,7 @@ type JwtResponseModel {
 type UserModel {
   id: ID!
   username: String!
+  email: String!
   admin: Boolean!
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -21,14 +22,23 @@ scalar DateTime
 
 type Query {
   getMe: UserModel!
+  findOne(id: Float!): UserModel!
+  findAll: [UserModel!]!
+  deleteUser(id: Float!): UserModel!
 }
 
 type Mutation {
-  signUp(input: AuthInput!): JwtResponseModel!
-  signIn(input: AuthInput!): JwtResponseModel!
+  signUp(input: SignUpInput!): JwtResponseModel!
+  signIn(input: SignInInput!): JwtResponseModel!
 }
 
-input AuthInput {
+input SignUpInput {
   username: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
+  email: String!
   password: String!
 }

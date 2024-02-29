@@ -2,16 +2,13 @@ import { UnauthorizedException } from '@nestjs/common';
 import axios from 'axios';
 
 export const AuthContext = async ({ req }) => {
-    //if (!req.headers?.authorization) {
-    //    throw new UnauthorizedException('No auth token specified!');
-    //}
-
     try {
+
         //idk if i shall use axios here, but @apollo/client requires react package so I think it is not recommended (assuming this auth approach is fine)
-        if (req.headers?.authorization) {
+        if (req.headers?.authorization && req?.body?.operationName != 'signUp' && req?.body?.operationName != 'signIn') {
 
             const response = await axios.post(
-                'http://localhost:3000/graphql',
+                process.env.AUTH_URL,
                 {
                     query: `
                  query {
@@ -28,6 +25,7 @@ export const AuthContext = async ({ req }) => {
                 {
                     headers: {
                         Authorization: req?.headers?.authorization,
+                        'x-api-key': process.env.AUTH_API_KEY
                     },
                 }
             );

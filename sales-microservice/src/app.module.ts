@@ -13,11 +13,13 @@ import { PrismaModule } from './prisma/prisma.module';
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloFederationDriver,
+      fieldResolverEnhancers: ['guards'],
       autoSchemaFile: { 
         path: join(process.cwd(), 'src/schema.gql'),
         federation: 2
       },
-      playground: true,
+      playground: process.env.NODE_ENV === 'developement',
+      introspection: process.env.NODE_ENV === 'developement',
       context: ({ req }) => ({ req }),
     })],
   controllers: [AppController],

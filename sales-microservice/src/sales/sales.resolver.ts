@@ -1,4 +1,4 @@
-import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, ResolveReference, Resolver } from '@nestjs/graphql';
 import { UserModel } from './model/user.model';
 import { SaleModel } from './model/sale.model';
 import { CreateSaleInput } from './dto/create-sale.input';
@@ -7,6 +7,7 @@ import { PatchSaleInput } from './dto/patch-sale.input';
 import { GetUser } from './decorator/get-user.decorator';
 import { AdminGuard } from './guard/admin.guard';
 import { UseGuards } from '@nestjs/common';
+import { ApiKeyGuard } from './guard/api-key.guard';
 
 @Resolver((of) => SaleModel)
 export class SalesResolver {
@@ -31,6 +32,12 @@ export class SalesResolver {
     }
 
     @UseGuards(AdminGuard)
+    @Query(() => [SaleModel])
+    async getAllSales() {
+        return this.salesService.findAll();
+    }
+
+    @UseGuards(AdminGuard)
     @Mutation(() => SaleModel)
     async deleteSale(
         @Args('id') id: number,
@@ -49,5 +56,10 @@ export class SalesResolver {
     @ResolveField(() => UserModel)
     async user(@Parent() sale: SaleModel): Promise<any> {
         return { __typename: 'User', id: sale.orderedBy };
+    }
+
+    @ResolveReference()
+    async resolveReference(reference): Promise<UserModel> {
+        return this.salesService.findOne(+reference.id);
     }
 }

@@ -4,7 +4,7 @@ import { UserModel } from "./user.model";
 @ObjectType()
 @Directive('@key(fields: "id")')
 export class SaleModel {
-  @Field(() => Int)
+  @Field(() => ID)
   id: number;
 
   @Field()
@@ -16,7 +16,7 @@ export class SaleModel {
   @Field(() => Int)
   orderedBy: number;
 
-  @Field(() => UserModel)
+  @Field(() => UserModel, { nullable: true })
   user?: UserModel
 
   @Field()

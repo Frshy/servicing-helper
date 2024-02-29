@@ -1,0 +1,34 @@
+version: '3'
+services:
+  sales-microservice:
+    container_name: sales-microservice-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: 'prod'
+    ports:
+      - "3002:3002"
+    env_file:
+      - .env.production
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: mysql-container-sales
+    image: mysql:latest
+    ports:
+      - "3307:3306"
+    env_file:
+      - .env.production
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55

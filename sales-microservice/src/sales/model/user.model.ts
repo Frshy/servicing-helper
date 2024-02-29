@@ -7,6 +7,6 @@ export class UserModel {
     @Field(() => ID)
     id: number 
 
-    @Field(() => [SaleModel])
+    @Field(() => [SaleModel], { nullable: true })
     sales?: SaleModel[]
 }

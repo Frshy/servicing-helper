@@ -1,0 +1,42 @@
+type Query {
+  findEmail(id: Int!): EmailModel!
+  findEmailEvent(id: Int!): EmailEventModel!
+  findAllEmails: [EmailModel]!
+  findAllEmailsEvents: [EmailEventModel]!
+}
+
+type Mutation {
+    sendEmail(receiver: String! subject: String! text: String! html: String!): EmailModel!
+    createEmailEvent(trackingImageUrl: String! type: EmailEventTypes!): EmailEventModel!
+    deleteEmail(id: Int!): EmailModel!
+    deleteEmailEvent(id: Int!): EmailEventModel!
+    deleteEmailEvents(id: Int!): [EmailEventModel]!
+}
+
+scalar DateTime
+
+type EmailModel @key(fields: "id") {
+    id: ID!
+    sentFrom: String!
+    sentTo: String!
+    subject: String!
+    text: String!
+    html: String!
+    trackingImageUrl: String!
+    EmailEvent: [EmailEventModel]
+    updatedAt: DateTime!
+    createdAt: DateTime!
+}
+
+type EmailEventModel @key(fields: "id") {
+  id: ID! 
+  emailId: Int!
+  type: EmailEventTypes!
+  email: EmailModel!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+enum EmailEventTypes {
+  OPENED
+}

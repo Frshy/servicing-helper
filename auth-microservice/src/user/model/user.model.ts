@@ -10,6 +10,9 @@ export class UserModel {
   username: string;
 
   @Field()
+  email: string;
+
+  @Field()
   admin: boolean;
 
   @Field()

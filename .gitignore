@@ -4,7 +4,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+.env.developement
+.env.production
 
 dist
 
 .vscode
+mysql_data

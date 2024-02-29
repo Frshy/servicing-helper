@@ -5,7 +5,30 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: 'dev'
     ports:
-      - "3000:3000"
+      - "3001:3001"
+    env_file:
+      - .env.developement
     volumes:
       - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: mysql-container-auth
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env.developement
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55

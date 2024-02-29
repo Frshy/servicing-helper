@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SaleModel {
+  id: ID!
+  document: DocumentModel
+}
+
+type EmailModel {
+  id: ID!
+  document: DocumentModel
+}
+
+type DocumentModel {
+  id: ID!
+  saleId: Int!
+  emailId: Int!
+  documentUrl: String!
+  sale: SaleModel
+  email: EmailModel
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getAllDocuments: [DocumentModel!]!
+  findOneDocument(id: Float!): DocumentModel!
+}
+
+type Mutation {
+  createDocument(saleId: Float!): DocumentModel!
+  deleteDocument(id: Float!): DocumentModel!
+}

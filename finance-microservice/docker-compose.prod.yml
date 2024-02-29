@@ -1,0 +1,33 @@
+version: '3'
+services:
+  finance-microservice:
+    container_name: finance-microservice-container
+    build:
+      dockerfile: Dockerfile
+      target: 'prod'
+    ports:
+      - "3003:3003"
+    env_file:
+      - .env.production
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: mysql-container-finance
+    image: mysql:latest
+    ports:
+      - "3308:3306"
+    env_file:
+      - .env.production
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55

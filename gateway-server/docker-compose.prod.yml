@@ -1,0 +1,15 @@
+version: '3'
+services:
+  gateway-server:
+    container_name: gateway-server-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: 'prod'
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"

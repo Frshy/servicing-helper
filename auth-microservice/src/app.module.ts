@@ -20,11 +20,13 @@ import { UserModule } from './user/user.module';
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloFederationDriver,
+      fieldResolverEnhancers: ['interceptors', 'guards', 'filters'],
       autoSchemaFile: {
         path: join(process.cwd(), 'src/schema.gql'),
         federation: 2
       },
-      playground: true,
+      playground: process.env.NODE_ENV === 'developement',
+      introspection: process.env.NODE_ENV === 'developement',
       context: ({ req }) => ({ req }),
     }),
     AuthModule,

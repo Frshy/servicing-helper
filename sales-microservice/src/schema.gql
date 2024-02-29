@@ -3,11 +3,11 @@
 # ------------------------------------------------------
 
 type SaleModel {
-  id: Int!
+  id: ID!
   service: String!
   price: Float!
   orderedBy: Int!
-  user: UserModel!
+  user: UserModel
   editedAt: DateTime!
   createdAt: DateTime!
 }
@@ -19,11 +19,12 @@ scalar DateTime
 
 type UserModel {
   id: ID!
-  sales: [SaleModel!]!
+  sales: [SaleModel!]
 }
 
 type Query {
   findOneSale(id: Float!): SaleModel!
+  getAllSales: [SaleModel!]!
 }
 
 type Mutation {

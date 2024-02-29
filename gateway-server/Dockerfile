@@ -1,15 +1,21 @@
-FROM node:20-alpine
+FROM node:18-alpine as dev
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
-RUN yarn global add @nestjs/cli
-
-RUN yarn install
+RUN npm install -g @nestjs/cli
 
 COPY . .
 
+RUN npm install
+
 EXPOSE 3000
 
-CMD [ "yarn", "start:dev" ]
+CMD [ "npm", "run", "start:dev" ]
+
+FROM dev as prod
+
+RUN yarn run build
+
+CMD [ "node", "dist/main.js" ]
