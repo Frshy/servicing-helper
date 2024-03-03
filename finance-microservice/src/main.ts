@@ -5,6 +5,7 @@ import { ApiKeyGuard } from './finance/guard/api-key.guard';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalGuards(new ApiKeyGuard());
+  app.enableCors();
   await app.listen(3003);
 }
 bootstrap();

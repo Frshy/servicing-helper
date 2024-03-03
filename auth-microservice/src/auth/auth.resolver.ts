@@ -17,7 +17,7 @@ export class AuthResolver {
         return this.authService.signUp(input);
     }
 
-    @Mutation(() => JwtResponseModel)
+    @Query(() => JwtResponseModel)
     async signIn(
         @Args('input') input: SignInInput,
     ): Promise<JwtResponseModel> {

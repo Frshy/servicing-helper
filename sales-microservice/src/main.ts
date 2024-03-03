@@ -10,6 +10,7 @@ async function bootstrap() {
     transform: true,
     transformOptions: { enableImplicitConversion: true },
   }));
+  app.enableCors();
   app.useGlobalGuards(new ApiKeyGuard());
 
   await app.listen(3002);

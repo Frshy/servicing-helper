@@ -20,7 +20,7 @@ export class AuthService {
         });
 
         if (!user) {
-            throw new ForbiddenException('User with this username does not exists!')
+            throw new ForbiddenException('User with this email does not exists!')
         }
 
         const passwordsMatch = await bcrypt.compare(input.password, user.passwordHash)

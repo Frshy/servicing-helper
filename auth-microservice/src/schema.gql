@@ -21,24 +21,24 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
+  signIn(input: SignInInput!): JwtResponseModel!
   getMe: UserModel!
   findOne(id: Float!): UserModel!
   findAll: [UserModel!]!
   deleteUser(id: Float!): UserModel!
 }
 
-type Mutation {
-  signUp(input: SignUpInput!): JwtResponseModel!
-  signIn(input: SignInInput!): JwtResponseModel!
-}
-
-input SignUpInput {
-  username: String!
+input SignInInput {
   email: String!
   password: String!
 }
 
-input SignInInput {
+type Mutation {
+  signUp(input: SignUpInput!): JwtResponseModel!
+}
+
+input SignUpInput {
+  username: String!
   email: String!
   password: String!
 }
