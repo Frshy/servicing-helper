@@ -72,7 +72,7 @@ export function SignUp() {
 
     return (
         <div className="flex justify-center items-center h-full w-full">
-            <div className="bg-slate-800 p-12 md:p-6 md:rounded-lg shadow-md w-full h-full md:h-fit md:max-w-md border-blue-500 md:border-t-2">
+            <div className="bg-gray-800 p-12 md:p-6 md:rounded-lg shadow-md w-full h-full md:h-fit md:max-w-md border-blue-600 md:border-t-2">
                 <h2 className="text-2xl font-semibold text-white mb-6">Sign Up</h2>
                 <Formik
                     initialValues={{ username: '', email: '', password: '' }}
@@ -159,7 +159,7 @@ export function SignUp() {
                                 />
                             </div>
 
-                            <button className={`w-full ${isSubmitting ? 'bg-gray-500' : 'bg-blue-500'} text-white font-semibold py-2 px-4 rounded-md ${!isSubmitting && 'hover:bg-blue-600'} focus:outline-none focus:bg-blue-600 transition duration-200`}
+                            <button className={`w-full ${isSubmitting ? 'bg-gray-500' : 'bg-blue-600'} text-white font-semibold py-2 px-4 rounded-md ${!isSubmitting && 'hover:bg-blue-700'} focus:outline-none focus:bg-blue-700 transition duration-200`}
                                 type="submit"
                                 disabled={isSubmitting}>
                                 Sign Up

@@ -13,6 +13,7 @@ export const GET_ME_QUERY = gql`
                 document {
                     documentUrl
                 }
+                createdAt
             }
             updatedAt
             createdAt

@@ -1,5 +1,5 @@
 import { Toaster } from 'react-hot-toast'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth, user, userLoading } from './api/auth'
 import { Dashboard } from './pages/Dashboard'
 import { SignIn } from './pages/SignIn'
@@ -12,12 +12,14 @@ const App = () => {
   user.value = fetchedUser;
 
   return (
-    <div className='bg-slate-900 w-full h-full'>
+    <div className='bg-gray-900 w-full h-full font-poppins'>
       <Toaster />
       <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard/*" element={<Dashboard />} />
       </Routes>
     </div>
   )
