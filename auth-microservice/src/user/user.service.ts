@@ -17,7 +17,8 @@ export class UserService {
         });
 
         if (!user) {
-           throw new NotFoundException('There is no user with such id!');
+           //throw new NotFoundException('There is no user with such id!');
+           return null;
         }
 
         delete user.passwordHash;

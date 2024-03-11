@@ -23,9 +23,8 @@ scalar DateTime
 type Query {
   signIn(input: SignInInput!): JwtResponseModel!
   getMe: UserModel!
-  findOne(id: Float!): UserModel!
-  findAll: [UserModel!]!
-  deleteUser(id: Float!): UserModel!
+  findOneUser(id: Float!): UserModel!
+  findAllUsers: [UserModel!]!
 }
 
 input SignInInput {
@@ -35,6 +34,7 @@ input SignInInput {
 
 type Mutation {
   signUp(input: SignUpInput!): JwtResponseModel!
+  deleteUser(id: Float!): UserModel!
 }
 
 input SignUpInput {

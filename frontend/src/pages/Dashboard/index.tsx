@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { user, userLoading } from "../../api/auth";
 import Loader from "../../components/Loader";
 import PanelLogo from "../../components/PanelLogo";
-import DashboardNav from "../../components/dashboard/DashboardNav";
+import DashboardNavElements from "../../components/dashboard/DashboardNavElements";
 import DashboardOverview from "./DashboardOverview";
+import SideNav from "../../components/SideNav";
+import NotFound404 from "../NotFound404";
 
 export function Dashboard() {
     const navigate = useNavigate();
@@ -18,25 +20,27 @@ export function Dashboard() {
 
 
     if (userLoading.value) {
-        <Loader />
+        return <Loader />
     }
 
     return (
         // container
         <div className="flex w-full h-full w-full bg-gray-900">
-            
+
             {/* left side */}
-            <div className="hidden md:flex flex-col items-center w-fit px-4 bg-gray-800 shadow-lg">
+            <SideNav>
                 <PanelLogo />
-                <DashboardNav />
-            </div>
+                <DashboardNavElements />
+            </SideNav>
 
             {/* right side */}
             <div className="w-full h-full bg-gray-900 text-white px-3 lg:px-12 p-12 pb-20 overflow-hidden overflow-y-auto overflow-x-auto flex flex-col xl:flex-row">
                 <Routes>
                     <Route path="/" element={<DashboardOverview />} />
+                    <Route path="*" element={<NotFound404 />} />
                 </Routes>
             </div>
+
         </div >
     );
 };

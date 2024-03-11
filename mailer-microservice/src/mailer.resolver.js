@@ -69,13 +69,14 @@ const resolvers = {
             return mailerService.deleteEmailEvent(args);
         }
     },
-    email: {
-        __resolveReference: async (reference) => {
+    EmailModel: {
+        __resolveReference: async (reference, context) => {
+            Guards.adminGuardCheck(context.user);
             Guards.apiKeyGuardCheck(context.apiKey);
-            
+
             return mailerService.findEmail({ id: reference.id });
         },
-    }
+    },
 }
 
 module.exports = resolvers

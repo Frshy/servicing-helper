@@ -4,9 +4,9 @@ services:
     container_name: frontend-container
     build:
       dockerfile: Dockerfile
-      target: 'dev'
+      target: 'prod'
     env_file:
-      - .env.developement
+      - '.env.production'
     ports:
       - 4000:4000
     volumes:

@@ -1,4 +1,4 @@
-export default function DashboardChats() {
+export default function ChatsSummary() {
     return (
         <div className="h-fit xl:h-full">
             <div className="drop-shadow-xl text-2xl mb-1">Your chats</div>

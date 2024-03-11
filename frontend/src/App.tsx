@@ -4,6 +4,8 @@ import { useAuth, user, userLoading } from './api/auth'
 import { Dashboard } from './pages/Dashboard'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
+import AdminPanel from './pages/Admin'
+import NotFound404 from './pages/NotFound404'
 
 const App = () => {
   const { user: fetchedUser, loading: authLoading } = useAuth();
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="dashboard/*" element={<Dashboard />} />
+        <Route path="admin/*" element={<AdminPanel />} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </div>
   )

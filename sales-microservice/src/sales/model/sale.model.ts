@@ -17,7 +17,7 @@ export class SaleModel {
   orderedBy: number;
 
   @Field(() => UserModel, { nullable: true })
-  user?: UserModel
+  user?: UserModel | null
 
   @Field()
   editedAt: Date;

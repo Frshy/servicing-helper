@@ -5,10 +5,10 @@ import { GraphQLExecutionContext } from '@nestjs/graphql';
 export class AdminGuard implements CanActivate {
     canActivate(ctx: GraphQLExecutionContext): boolean {
         try {
-            const headers = ctx.getArgs()[2].req.headers;
-            if (headers.user) {
-                return JSON.parse(headers.user).admin;
-            }
+            const request = ctx.getArgs()[2].req;
+            const user = request.user;
+
+            return user?.admin;
         } catch (err) {
             return false;
         }

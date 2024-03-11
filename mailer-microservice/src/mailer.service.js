@@ -30,7 +30,7 @@ async function findAllEmailsEvents() {
 async function findEmail(args) {
     const email = await getOrSetCacheObject(`emails:${args.id}`, async () => {
         return await prisma.email.findUnique({
-            where: { id: args.id },
+            where: { id: +args.id },
             include: {
                 EmailEvent: true,
             }
@@ -88,15 +88,18 @@ async function sendEmail(args) {
 async function createEmailEvent(args) {
     await redisClient.del('emailsEvents');
 
-    const emailExists = await prisma.email.count({
+    const existingEmail = await prisma.email.findFirst({
         where: {
             trackingImageUrl: args.trackingImageUrl
         }
     });
 
-    if (!emailExists) {
+    if (!existingEmail) {
         throw "There is no email sent with such event tracking image path (url)!";
     }
+
+    await redisClient.del(`emails`)
+    await redisClient.del(`emails:${existingEmail.id}`)
 
     const createdEmailEvent = await prisma.emailEvent.create({
         data: {
@@ -147,7 +150,6 @@ async function deleteEmail(args) {
 
         return deletedEmail;
     } catch (err) {
-        console.log(err)
         throw 'Failed to delete the email!';
     }
 }

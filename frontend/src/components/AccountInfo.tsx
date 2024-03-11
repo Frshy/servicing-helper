@@ -1,5 +1,5 @@
-import { user } from "../../api/auth";
-import { formatDate } from "../../util/DateUtil";
+import { user } from "../api/auth";
+import { formatDate } from "../util/DateUtil";
 
 export default function AccountInfo() {
     return (

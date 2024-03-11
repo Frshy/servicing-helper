@@ -40,7 +40,6 @@ export function SignUp() {
                 return navigate('/dashboard')
             },
             onError(error) {
-                console.log(error)
                 error.graphQLErrors.map(({ message }) => {
                     toast.error(message, { duration: 6000 });
                 });

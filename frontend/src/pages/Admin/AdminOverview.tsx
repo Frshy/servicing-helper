@@ -1,8 +1,8 @@
 import AccountInfo from "../../components/AccountInfo"
 import ChatsSummary from "../../components/ChatsSummary"
-import UserOrders from "../../components/dashboard/UserOrders"
+import LatestSales from "../../components/admin/LatestSales"
 
-export default function DashboardOverview() {
+export default function AdminOverview() {
     return (
         <>
             <div className="h-fit xl:h-full w-full flex flex-col">
@@ -15,7 +15,7 @@ export default function DashboardOverview() {
 
             <div className="mx-6"></div>
 
-            <UserOrders />
+            <LatestSales />
 
         </>
     )

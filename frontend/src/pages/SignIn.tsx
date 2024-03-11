@@ -113,8 +113,8 @@ export function SignIn() {
                                 disabled={isSubmitting}>
                                 Sign In
                             </button>
-
                             <div className="mt-5 text-center">
+
                                 <Link to="/sign-up"
                                     className="text-gray-300 font-normal text-md hover:text-blue-600 duration-300">
                                     Do not have an account? Sign up!

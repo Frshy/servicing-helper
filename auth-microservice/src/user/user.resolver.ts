@@ -1,4 +1,4 @@
-import { Args, Query, ResolveReference, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, ResolveReference, Resolver } from '@nestjs/graphql';
 import { UserModel } from './model/user.model';
 import { UseGuards } from '@nestjs/common';
 import { User } from '@prisma/client';
@@ -24,7 +24,7 @@ export class UserResolver {
 
     @UseGuards(AdminGuard)
     @Query(() => UserModel)
-    async findOne(
+    async findOneUser(
         @Args('id') id: number
     ) {
         return this.userService.findOne(id);
@@ -32,12 +32,12 @@ export class UserResolver {
 
     @UseGuards(AdminGuard)
     @Query(() => [UserModel])
-    async findAll() {
+    async findAllUsers() {
         return this.userService.findAll();
     }
 
     @UseGuards(AdminGuard)
-    @Query(() => UserModel)
+    @Mutation(() => UserModel)
     async deleteUser(
         @Args('id') id: number
     ) {
@@ -45,7 +45,7 @@ export class UserResolver {
     }
 
     @ResolveReference()
-    async resolveReference(reference): Promise<UserModel> {
+    async resolveReference(reference): Promise<UserModel | null> {
         return this.userService.findOne(reference.id);
     }
 }
