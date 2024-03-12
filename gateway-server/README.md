@@ -1,3 +1,12 @@
+# To initialize you need to configure .env files and push database schema.
+Env files: <br>
+Copy .env to .env.developement and env.production, change .env's data according to you, remember to put NODE_ENV='production' in env.production <br>
+
+```
+make gateway-build
+make gateway-up
+```
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
