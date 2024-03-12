@@ -1,6 +1,6 @@
 # To initialize you need to configure .env files and push database schema.
 Env files: <br>
-Copy .env to .env.developement and env.production, change .env's data according to you, remember to put NODE_ENV='production' in env.production <br>
+Copy .env.example to .env.developement and env.production, change .env's data according to you, remember to put NODE_ENV='production' in env.production <br>
 
 ```
 make finance-build
