@@ -1,3 +1,18 @@
+# To initialize you need to configure .env files and push database schema.
+Env files: <br>
+Copy .env to .env.developement and env.production, change .env's data according to you, remember to put NODE_ENV='production' in env.production <br>
+
+```
+make finance-build
+make finance-up
+```
+once nest app is running
+open different terminal and do
+```
+make finance-db-deploy
+```
+If deploying is finished you can close both shells.
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
