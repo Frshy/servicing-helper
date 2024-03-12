@@ -11,7 +11,9 @@ open different terminal and do
 ```
 make auth-db-deploy
 ```
-If deploying is finished you can close both shells.
+If deploying is finished you can close both shells. <br>
+
+<h2>REMEMBER YOU CAN SET ADMIN ROLE FOR USER ONLY IN MYSQL CLIENT</h2>
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
