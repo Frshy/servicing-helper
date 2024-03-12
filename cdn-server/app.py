@@ -75,7 +75,7 @@ def generate_email_tracking_image():
         return jsonify({'error': 'Invalid API key'}), 401
 
     filename = "pixel.png"
-    file_path = os.path.join(ASSETS_DIR, filename)
+    file_path = os.path.join(filename)
 
     file_token = generate_random_token()
     new_filename = file_token + filename
