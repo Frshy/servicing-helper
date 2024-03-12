@@ -1,33 +1,15 @@
 import { useMutation } from "@apollo/client";
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import * as Yup from 'yup';
-import { DELETE_SALE_MUTATION } from "../../api/schema/mutation/deleteSale";
-import { PATCH_SALE_MUTATION } from "../../api/schema/mutation/patchSale";
-import { DocumentModel, EmailEventModel, SaleModel, UserModel } from "../../api/types";
-import { allUsers, refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
+import { DELETE_DOCUMENT_MUTATION } from "../../api/schema/mutation/deleteDocument";
+import { DocumentModel, EmailEventModel } from "../../api/types";
+import { refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
 import { formatDate } from "../../util/DateUtil";
 import PopUp from "../PopUp";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import SelectField from "../SelectField";
-import { DELETE_DOCUMENT_MUTATION } from "../../api/schema/mutation/deleteDocument";
 
 interface PropsInt {
     documentToManage: DocumentModel | any,
     setDocumentToManage: any,
 }
-
-const validationSchema = Yup.object().shape({
-    service: Yup
-        .string()
-        .required('Service is required'),
-    price: Yup
-        .number()
-        .required('Price is required'),
-    orderedBy: Yup
-        .number()
-        .required('Ordered by is required')
-});
 
 export default function DocumentManagementPopUp({ documentToManage, setDocumentToManage }: PropsInt) {
     const [execDeleteDocument] = useMutation(DELETE_DOCUMENT_MUTATION, {
@@ -39,7 +21,7 @@ export default function DocumentManagementPopUp({ documentToManage, setDocumentT
             variables: {
                 id: parseInt(documentToManage.id)
             },
-            onCompleted(data) {
+            onCompleted() {
                 toast.success('Successfully deleted document!');
                 toast("Keep in mind email with sale info is still in user's inbox!", {
                     icon: '📧',

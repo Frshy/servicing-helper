@@ -8,7 +8,6 @@ import { SaleModel, UserModel } from "../../api/types";
 import { allUsers, refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
 import { formatDate } from "../../util/DateUtil";
 import PopUp from "../PopUp";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import SelectField from "../SelectField";
 
 interface PropsInt {
@@ -66,7 +65,7 @@ export default function SaleManagementPopUp({ sale, setSaleToManage }: PropsInt)
                 orderedBy: parseInt(values.orderedBy),
                 ...values
             },
-            onCompleted(data) {
+            onCompleted() {
                 toast.success('Successfully updated sale!');
 
                 refetchSalesSignal.value();

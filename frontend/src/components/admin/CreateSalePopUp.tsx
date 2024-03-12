@@ -2,15 +2,11 @@ import { useMutation } from "@apollo/client";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import * as Yup from 'yup';
-import { DELETE_SALE_MUTATION } from "../../api/schema/mutation/deleteSale";
-import { PATCH_SALE_MUTATION } from "../../api/schema/mutation/patchSale";
-import { SaleModel, UserModel } from "../../api/types";
-import { allUsers, refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
-import { formatDate } from "../../util/DateUtil";
-import PopUp from "../PopUp";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import SelectField from "../SelectField";
 import { CREATE_SALE_MUTATION } from "../../api/schema/mutation/createSale";
+import { UserModel } from "../../api/types";
+import { allUsers, refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
+import PopUp from "../PopUp";
+import SelectField from "../SelectField";
 
 const validationSchema = Yup.object().shape({
     service: Yup
@@ -35,7 +31,7 @@ export default function CreateSalePopup({ setCreatingSale }: any) {
                 orderedBy: parseInt(values.orderedBy),
                 ...values
             },
-            onCompleted(data) {
+            onCompleted() {
                 toast.success('Successfully created sale!');
 
                 setCreatingSale(false);

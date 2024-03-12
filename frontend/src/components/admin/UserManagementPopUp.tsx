@@ -1,11 +1,10 @@
 import { useMutation } from "@apollo/client";
 import toast from "react-hot-toast";
-import { PATCH_SALE_MUTATION } from "../../api/schema/mutation/patchSale";
+import { DELETE_USER_MUTATION } from "../../api/schema/mutation/deleteUser";
 import { UserModel } from "../../api/types";
 import { refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
 import { formatDate } from "../../util/DateUtil";
 import PopUp from "../PopUp";
-import { DELETE_USER_MUTATION } from "../../api/schema/mutation/deleteUser";
 
 interface PropsInt {
     user: UserModel | any,

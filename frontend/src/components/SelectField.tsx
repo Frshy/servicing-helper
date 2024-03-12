@@ -1,6 +1,5 @@
-import React from 'react';
-import Select from 'react-select';
 import { useField } from 'formik';
+import Select from 'react-select';
 
 function SelectField(props: any) {
     const [field, state, { setValue, setTouched }] = useField(props.field.name);

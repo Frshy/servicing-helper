@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { user } from "../../api/auth"
-import { SaleModel } from "../../api/types"
-import { allSales } from "../../pages/Admin"
-import { formatDate } from "../../util/DateUtil"
-import PopUp from "../PopUp";
+import { SaleModel } from "../../api/types";
+import { allSales } from "../../pages/Admin";
+import { formatDate } from "../../util/DateUtil";
 
 export default function LatestSales() {
     const latestSales = (allSales.value as SaleModel[])

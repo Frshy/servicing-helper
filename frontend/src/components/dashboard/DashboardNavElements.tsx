@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
-import { removeAccessToken, user } from "../../api/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { removeAccessToken, user } from "../../api/auth";
 
 export default function DashboardNavElements() {
     const navigate = useNavigate();

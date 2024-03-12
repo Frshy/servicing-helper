@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
-import { removeAccessToken, user } from "../../api/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { removeAccessToken } from "../../api/auth";
 
 export default function AdminNavElements() {
     const location = useLocation()

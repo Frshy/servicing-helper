@@ -1,17 +1,14 @@
-import { Link, useParams } from "react-router-dom";
-import { user } from "../../api/auth";
-import { DocumentModel, SaleModel } from "../../api/types";
-import { allSales, refetchSalesSignal, refetchUsersSignal } from "../../pages/Admin";
-import { formatDate } from "../../util/DateUtil";
-import LatestSales from "./LatestSales";
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_DOCUMENT_MUTATION } from "../../api/schema/mutation/createDocument";
+import { useState } from "react";
 import toast from "react-hot-toast";
-import PopUp from "../PopUp";
-import SaleManagementPopUp from "./SaleManagementPopUp";
-import DocumentManagementPopUp from "./DocumentManagementPopUp";
+import { Link, useParams } from "react-router-dom";
+import { CREATE_DOCUMENT_MUTATION } from "../../api/schema/mutation/createDocument";
+import { DocumentModel, SaleModel } from "../../api/types";
+import { allSales, refetchSalesSignal } from "../../pages/Admin";
+import { formatDate } from "../../util/DateUtil";
 import CreateSalePopup from "./CreateSalePopUp";
+import DocumentManagementPopUp from "./DocumentManagementPopUp";
+import SaleManagementPopUp from "./SaleManagementPopUp";
 
 export default function SalesList() {
     const { id: highlightedSaleId } = useParams();
