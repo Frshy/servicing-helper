@@ -1,10 +1,11 @@
 # Servicing Helper
 
-### This is my first project in which I use docker, vite, microservices and signals (I had some problem with them so they made the code a little bit messed)
+## This is my first project in which I use docker, vite, microservices, graphql and signals (I had some problem with them so they made the code a little bit messed)
+
 ## Production mode is not tested!
 
 ## A task given to me by Kamil from Likescoding (company's head)
-Main idea of the project is to help managing servicin.
+Main idea of the project is to help managing servicin. The goal was to check my skills and to learn new solutions.
 
 This project uses multiple microservices, normally I would split it into multiple repositories - one for each microservice, but since I am doing it only by myself I do not find it necessery to do - it would take more time to review it.
 
