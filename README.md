@@ -9,6 +9,14 @@ Main idea of the project is to help managing servicin. The goal was to check my 
 
 This project uses multiple microservices, normally I would split it into multiple repositories - one for each microservice, but since I am doing it only by myself I do not find it necessery to do - it would take more time to review it.
 
+Features:
+- auth system
+- sending documents in emails
+- tracking emails openings using 1x1px images
+- dockerized apps
+- mysql database
+- microservices based
+
 ## To initialize you need to follow instructions specified in each app's folder's README.
 
 Makefile instruction:
