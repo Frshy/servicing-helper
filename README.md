@@ -1,6 +1,6 @@
 # Servicing Helper
 
-## This is my first project in which I use docker, vite, microservices, graphql and signals (I had some problem with them so they made the code a little bit messed)
+## This is my first project in which I use docker, vite, microservices, graphql and signals (I had some problems with them so they made the code a little bit messed)
 
 ## Production mode is not tested!
 
