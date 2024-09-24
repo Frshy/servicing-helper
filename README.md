@@ -1,5 +1,6 @@
 # Servicing Helper
 
+### This is my first project in which I use docker, vite, microservices and signals (I had some problem with them so they made the code a little bit messed)
 ## Production mode is not tested!
 
 ## A task given to me by Kamil from Likescoding (company's head)
